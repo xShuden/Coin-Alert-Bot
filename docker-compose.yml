@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  telegram-bot:
+    build: .
+    container_name: telegram-crypto-bot
+    env_file:
+      - .env # Loads environment variables from .env file
+    volumes:
+      - ./notified_tickers.json:/app/notified_tickers.json # Persists notified_tickers.json
+    restart: unless-stopped # Ensures the bot restarts if it crashes or server reboots
